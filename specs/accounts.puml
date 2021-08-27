@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+component "Program Authority" as ProgramAuthority
+
+package "IWR-ACE Program" as ACE {
+    component "State Account" as StateAccount
+
+    folder "Pool Associated Accounts" {
+        component "Native Pool Account" as NativePoolAccount
+
+        folder "IWR Token" as Token {
+            component "Mint Account" as MintAccount
+            component "Token Pool Account" as TokenPoolAccount
+            [MintAccount] -> [TokenPoolAccount]
+        }
+    }
+}
+
+ProgramAuthority --> StateAccount
+ProgramAuthority --> MintAccount
+ProgramAuthority --> NativePoolAccount
+
+StateAccount ...> MintAccount
+StateAccount ...> TokenPoolAccount
+StateAccount ...> NativePoolAccount
+
+@enduml
